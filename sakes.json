@@ -1,0 +1,12 @@
+[
+    {
+      "name": "純米大吟釀A",
+      "price": 299.99,
+      "image_url": "https://example.com/sake_a.jpg"
+    },
+    {
+      "name": "本釀造B",
+      "price": 199.99,
+      "image_url": "https://example.com/sake_b.jpg"
+    }
+  ]

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>清酒商品リスト</title>
+    <style>
+        .sake-item {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>酒商品リスト</h1>
+    {% for sake in sakes %}
+        <div class="sake-item">
+            <h2>{{ sake.name }}</h2>
+            <p>価格: {{ sake.price }} 円</p>
+            {% if sake.image %}
+                <img src="{{ sake.image.url }}" alt="{{ sake.name }}" style="max-width: 200px;">
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
