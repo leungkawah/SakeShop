@@ -83,11 +83,11 @@
         <tbody id="sakeList">
             {% for sake in sakes %}
             <tr>
-                <td data-label="番号" align="center">{{ forloop.counter }}</td>
-                <td data-label="名称" align="center">{{ sake.name }}</td>
-                <td data-label="価格" align="center" class="price-cell">{{ sake.price }}</td>
-                <td data-label="画像" align="center">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
-                <td data-label="操作" align="center" class="actions">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ sake.name }}</td>
+                <td class="price-cell">{{ sake.price }}</td>
+                <td>{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
+                <td class="actions">
                     <button class="editBtn" data-id="{{ sake.id }}">更新</button>
                     <button class="deleteBtn" data-id="{{ sake.id }}">削除</button>
                 </td>
@@ -138,7 +138,7 @@
 
             $('.editBtn').click(function() {
                 var row = $(this).closest('tr');
-                $('#sakeId').val(row.find('td:eq(0)').text());
+                $('#sakeId').val($(this).data('id'));
                 $('#name').val(row.find('td:eq(1)').text());
                 $('#price').val(row.find('td:eq(2)').text().replace(/,/g, ''));
                 $('#registerBtn').prop('disabled', true);
