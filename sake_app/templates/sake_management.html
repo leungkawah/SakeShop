@@ -13,7 +13,15 @@
         th, td {
             border: 1px solid black;
             padding: 5px;
-            text-align: left;
+            text-align: middle;
+        }
+        th {
+            background-color: #add8e6;
+        }
+        .form-buttons {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 50px;
         }
         @media (max-width: 768px) {
             th, td {
@@ -22,7 +30,7 @@
                 box-sizing: border-box;
             }
             th {
-                background-color: #f0f0f0;
+                background-color: #add8e6;
                 font-weight: bold;
             }
             td {
@@ -34,7 +42,7 @@
                 font-weight: bold;
                 display: inline-block;
                 width: 100px;
-                background-color: #f0f0f0;
+                background-color: #add8e6;
                 padding-right: 10px;
                 box-sizing: border-box;
             }
@@ -42,9 +50,9 @@
     </style>
 </head>
 <body>
-    <h1>酒販売情報管理</h1>
+    <h1 align="middle">酒販売情報管理</h1>
     
-    <form id="sakeForm">
+    <form id="sakeForm" align="middle">
         {% csrf_token %}
         <input type="hidden" id="sakeId" name="id">
         <label for="name">名称：</label>
@@ -53,8 +61,10 @@
         <input type="number" id="price" name="price" required>
         <label for="image">画像アップ：</label>
         <input type="file" id="image" name="image">
-        <button type="button" id="registerBtn">登録</button>
-        <button type="button" id="updateBtn" disabled>更新確認</button>
+        <div class="form-buttons">
+            <button type="button" id="registerBtn">登録</button>
+            <button type="button" id="updateBtn" disabled>更新確認</button>
+        </div>
     </form>
 
     <table>
@@ -70,11 +80,11 @@
         <tbody id="sakeList">
             {% for sake in sakes %}
             <tr>
-                <td data-label="番号">{{ sake.id }}</td>
-                <td data-label="名称">{{ sake.name }}</td>
-                <td data-label="価格" class="price-cell">{{ sake.price }}</td>
-                <td data-label="画像">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
-                <td data-label="操作">
+                <td data-label="番号" align="middle">{{ sake.id }}</td>
+                <td data-label="名称" align="middle">{{ sake.name }}</td>
+                <td data-label="価格" align="middle" class="price-cell">{{ sake.price }}</td>
+                <td data-label="画像" align="middle">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
+                <td data-label="操作" align="middle">
                     <button class="editBtn" data-id="{{ sake.id }}">更新</button>
                     <button class="deleteBtn" data-id="{{ sake.id }}">削除</button>
                 </td>
