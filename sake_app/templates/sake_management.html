@@ -72,8 +72,8 @@
             <tr>
                 <td data-label="番号">{{ sake.id }}</td>
                 <td data-label="名称">{{ sake.name }}</td>
-                <td data-label="価格">{{ sake.price }}</td>
-                <td data-label="画像">{% if sake.image %}<img src="{{ sake.image.url }}" width="100">{% endif %}</td>
+                <td data-label="価格" class="price-cell">{{ sake.price }}</td>
+                <td data-label="画像">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
                 <td data-label="操作">
                     <button class="editBtn" data-id="{{ sake.id }}">更新</button>
                     <button class="deleteBtn" data-id="{{ sake.id }}">削除</button>
@@ -85,6 +85,15 @@
 
     <script>
         $(document).ready(function() {
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            $('.price-cell').each(function() {
+                var price = parseInt($(this).text(), 10);
+                $(this).text(formatNumber(price));
+            });
+
             $('#registerBtn').click(function() {
                 var formData = new FormData($('#sakeForm')[0]);
                 $.ajax({
@@ -118,7 +127,7 @@
                 var row = $(this).closest('tr');
                 $('#sakeId').val(row.find('td:eq(0)').text());
                 $('#name').val(row.find('td:eq(1)').text());
-                $('#price').val(row.find('td:eq(2)').text());
+                $('#price').val(row.find('td:eq(2)').text().replace(/,/g, ''));
                 $('#registerBtn').prop('disabled', true);
                 $('#updateBtn').prop('disabled', false);
             });
