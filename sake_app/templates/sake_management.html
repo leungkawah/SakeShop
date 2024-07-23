@@ -13,15 +13,18 @@
         th, td {
             border: 1px solid black;
             padding: 5px;
-            text-align: middle;
+            text-align: center;
         }
         th {
             background-color: #add8e6;
         }
         .form-buttons {
             text-align: center;
-            margin-top: 5px;
+            margin-top: 20px;
             margin-bottom: 50px;
+        }
+        .actions {
+            width: 20%;
         }
         @media (max-width: 768px) {
             th, td {
@@ -50,9 +53,9 @@
     </style>
 </head>
 <body>
-    <h1 align="middle">酒販売情報管理</h1>
-    
-    <form id="sakeForm" align="middle">
+    <h1 align="center">酒販売情報管理</h1>
+
+    <form id="sakeForm" align="center">
         {% csrf_token %}
         <input type="hidden" id="sakeId" name="id">
         <label for="name">名称：</label>
@@ -74,17 +77,17 @@
                 <th>名称</th>
                 <th>価格</th>
                 <th>画像</th>
-                <th>操作</th>
+                <th class="actions">操作</th>
             </tr>
         </thead>
         <tbody id="sakeList">
             {% for sake in sakes %}
             <tr>
-                <td data-label="番号" align="middle">{{ sake.id }}</td>
-                <td data-label="名称" align="middle">{{ sake.name }}</td>
-                <td data-label="価格" align="middle" class="price-cell">{{ sake.price }}</td>
-                <td data-label="画像" align="middle">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
-                <td data-label="操作" align="middle">
+                <td data-label="番号" align="center">{{ forloop.counter }}</td>
+                <td data-label="名称" align="center">{{ sake.name }}</td>
+                <td data-label="価格" align="center" class="price-cell">{{ sake.price }}</td>
+                <td data-label="画像" align="center">{% if sake.image %}<img src="{{ sake.image.url }}" width="50">{% endif %}</td>
+                <td data-label="操作" align="center" class="actions">
                     <button class="editBtn" data-id="{{ sake.id }}">更新</button>
                     <button class="deleteBtn" data-id="{{ sake.id }}">削除</button>
                 </td>
