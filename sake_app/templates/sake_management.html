@@ -8,10 +8,36 @@
     <style>
         table {
             border-collapse: collapse;
+            width: 100%;
         }
         th, td {
             border: 1px solid black;
             padding: 5px;
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            th {
+                background-color: #f0f0f0;
+                font-weight: bold;
+            }
+            td {
+                border-top: none;
+                border-bottom: 1px solid black;
+            }
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: inline-block;
+                width: 100px;
+                background-color: #f0f0f0;
+                padding-right: 10px;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
@@ -44,11 +70,11 @@
         <tbody id="sakeList">
             {% for sake in sakes %}
             <tr>
-                <td>{{ sake.id }}</td>
-                <td>{{ sake.name }}</td>
-                <td>{{ sake.price }}</td>
-                <td>{% if sake.image %}<img src="{{ sake.image.url }}" width="100">{% endif %}</td>
-                <td>
+                <td data-label="番号">{{ sake.id }}</td>
+                <td data-label="名称">{{ sake.name }}</td>
+                <td data-label="価格">{{ sake.price }}</td>
+                <td data-label="画像">{% if sake.image %}<img src="{{ sake.image.url }}" width="100">{% endif %}</td>
+                <td data-label="操作">
                     <button class="editBtn" data-id="{{ sake.id }}">更新</button>
                     <button class="deleteBtn" data-id="{{ sake.id }}">削除</button>
                 </td>

@@ -18,7 +18,7 @@ def sake_create(request):
         if form.is_valid():
             sake = form.save()
             return JsonResponse({'id': sake.id, 'name': sake.name, 'price': str(sake.price)})
-    return JsonResponse({'error': 'Invalid form'}, status=400)
+    return JsonResponse({'エラー': '入力された値が正しい形式ではない'}, status=400)
 
 def sake_update(request, pk):
     sake = get_object_or_404(Sake, pk=pk)
@@ -27,9 +27,9 @@ def sake_update(request, pk):
         if form.is_valid():
             sake = form.save()
             return JsonResponse({'id': sake.id, 'name': sake.name, 'price': str(sake.price)})
-    return JsonResponse({'error': 'Invalid form'}, status=400)
+    return JsonResponse({'エラー': '入力された値が正しい形式ではない'}, status=400)
 
 def sake_delete(request, pk):
     sake = get_object_or_404(Sake, pk=pk)
     sake.delete()
-    return JsonResponse({'success': True})
+    return JsonResponse({'削除成功': True})
