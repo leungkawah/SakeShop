@@ -9,10 +9,11 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            font-size: 18px;
         }
         th, td {
             border: 1px solid black;
-            padding: 5px;
+            padding: 10px;
             text-align: center;
         }
         th {
@@ -24,7 +25,12 @@
             margin-bottom: 50px;
         }
         .actions {
-            width: 20%;
+            width: 15%;
+        }
+        .actions button {
+            font-size: 16px;
+            padding: 20px;
+            margin: 5px;
         }
         @media (max-width: 768px) {
             th, td {
@@ -74,8 +80,8 @@
         <thead>
             <tr>
                 <th>番号</th>
-                <th>名称</th>
-                <th>価格</th>
+                <th style="width: 30%;">名称</th>
+                <th style="width: 15%;">価格</th>
                 <th>画像</th>
                 <th class="actions">操作</th>
             </tr>
